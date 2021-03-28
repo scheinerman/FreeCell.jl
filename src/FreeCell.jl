@@ -29,6 +29,6 @@ end
 
 include("free_cell.jl")
 include("foundation.jl")
-
+include("cascade.jl")
 
 end # module

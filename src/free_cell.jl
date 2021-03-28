@@ -17,6 +17,7 @@ end
 """
 is_empty(c::free_cell) = c.empty
 
+
 """
 `get_card(c::free_cell)` returns the Card in that cell or throws 
 and error if the cell is empty.
@@ -26,6 +27,10 @@ function get_card(c::free_cell)::Card
         error("No card in this free cell")
     end
     return c.card
+end
+
+function add_check(c::free_cell, ::Card)::Bool
+    return is_empty(c)
 end
 
 """

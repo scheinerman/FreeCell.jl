@@ -1,7 +1,9 @@
 export foundation, add_check, add_card
 
-
-
+"""
+A `foundation` consists of the four piles (one per suit) built up 
+starting with aces and ending with kings.
+"""
 struct foundation
     piles::Dict{Symbol,Vector{Card}}
     function foundation()
