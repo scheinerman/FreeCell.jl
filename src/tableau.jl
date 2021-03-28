@@ -1,0 +1,38 @@
+export Tableau
+
+"""
+A `Tableau` is a full position in FreeCell with four free cells,
+a foundation, and a cascade. 
++ `Tableau()` creates an empty Tableau 
++ `Tableau(deck())` is the way to start with a shuffled deck
+"""
+struct Tableau
+    Free::free_cells
+    Found::foundation
+    Casc::cascade
+    function Tableau()
+        FC = free_cells()
+        FD = foundation()
+        CC = cascade()
+        new(FC, FD, CC)
+    end
+end
+
+
+function Tableau(d::Vector{Card})
+    C = cascade(d)
+    T = Tableau()
+    for k = 1:8
+        T.Casc.piles[k] = C.piles[k]
+    end
+    return T
+end
+
+
+function show(io::IO, T::Tableau)
+    println(io, "Free Cells: $(free_string(T.Free))")
+    println(io, "Foundation:")
+    println(io, T.Found)
+    println(io, "Cascade:")
+    print(T.Casc)
+end

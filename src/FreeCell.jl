@@ -1,14 +1,14 @@
 module FreeCell
 using PlayingCards, ImplicitGraphs
 
-import Base: show, string, length
+import Base: show, string, length, isempty
 
 # A FreeCell tableau consists of:
 # * four free cells
 # * four foundations
 # * eight cascades
 
-
+ace_high(false)
 
 
 function row_string(list::Vector{Card})::String
@@ -27,8 +27,8 @@ end
 
 
 
-include("free_cell.jl")
+include("free_cells.jl")
 include("foundation.jl")
 include("cascade.jl")
-
+include("tableau.jl")
 end # module
