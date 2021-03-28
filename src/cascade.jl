@@ -73,10 +73,32 @@ end
 `add_card(C::cascade, k::Int, PC::Card)::Bool` adds the card `PC` 
 to pile `k` of `C`.
 """
-function add_card(C::cascade, k::Int, PC::Card)::Bool 
-    if !add_check(C,k,PC)
+function add_card(C::cascade, k::Int, PC::Card)::Bool
+    if !add_check(C, k, PC)
         return false
     end
-    push!(C.piles[k],PC)
-    return true 
-end 
+    push!(C.piles[k], PC)
+    return true
+end
+
+"""
+`get_card(C::cascade,k)` returns the bottom card in pile `k` of 
+cascade `C`.
+"""
+function get_card(C::cascade, k::Int)::Card
+    p = C.piles[k]
+    if length(p) == 0
+        error("Attempt to get card from empty cascade pile $k")
+    end
+    return p[end]
+end
+
+"""
+`rm_card(C::cascade, k::Int)::Card` removes the last card from pile `k`
+of cascade `C`.
+"""
+function rm_card(C::cascade, k::Int)::Card
+    PC = get_card(C, k)
+    C.piles[k] = C.piles[k][1:end-1]
+    return PC
+end
