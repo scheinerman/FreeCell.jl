@@ -1,7 +1,7 @@
 module FreeCell
 using PlayingCards, ImplicitGraphs
 
-import Base: show, string, length, isempty
+import Base: show, string, length, isempty, hash, (==)
 
 # A FreeCell tableau consists of:
 # * four free cells
@@ -31,4 +31,7 @@ include("free_cells.jl")
 include("foundation.jl")
 include("cascade.jl")
 include("tableau.jl")
+include("mover.jl")
+
+
 end # module
