@@ -1,0 +1,4 @@
+name = "FreeCell"
+uuid = "16865515-0d86-4f18-a7dc-57fa46f959eb"
+authors = ["Ed Scheinerman <ers@jhu.edu>"]
+version = "0.1.0"
