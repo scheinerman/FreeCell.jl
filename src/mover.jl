@@ -4,8 +4,7 @@ export move_maker
 `move_maker(T::Tableau)` generates the list of all possible next positions.
 """
 function move_maker(T::Tableau)::Vector{Tableau}
-    # out = Set{Tableau}()   # place to put the answer
-    out = Tableau[]
+    out = Set{Tableau}()   # place to put the answer
 
     # PART 1: Move last card in cascade piles
 
@@ -76,8 +75,5 @@ function move_maker(T::Tableau)::Vector{Tableau}
 
 
     end
-
-
-
     return collect(out) # report as a list for ImplicitGraph
 end

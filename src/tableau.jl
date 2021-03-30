@@ -69,5 +69,5 @@ function hash(T::Tableau, h::UInt)
 end
 
 function (==)(T::Tableau, TT::Tableau)
-    T.Free == TT.Free && TT.Found.piles == TT.Found.piles && TT.Casc.piles == TT.Casc.piles
+    T.Free == TT.Free && T.Found.piles == TT.Found.piles && T.Casc.piles == TT.Casc.piles
 end
