@@ -25,6 +25,7 @@ function row_string(list::Vector{Card})::String
     return result
 end
 
+export score
 
 
 include("free_cells.jl")

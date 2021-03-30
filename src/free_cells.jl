@@ -52,3 +52,12 @@ in the freecells to add the card.
 function add_check(c::free_cells, ::Card)::Bool
     return length(c) < 4
 end
+
+
+"""
+`score(c::free_cells)` is the cube of the number of unoccupied cells.
+"""
+function score(c::free_cells)
+    open = 4 - length(c)
+    return open^3
+end

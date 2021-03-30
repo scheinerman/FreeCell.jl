@@ -102,3 +102,31 @@ function rm_card(C::cascade, k::Int)::Card
     C.piles[k] = C.piles[k][1:end-1]
     return PC
 end
+
+"""
+`score(pile::Vector{Card})` subtacts 1 for each card on the pile, 
+but adds 1 back in for builds at the bottom.
+"""
+function score(pile::Vector{Card})
+    n = length(pile)
+    result = -n
+
+    if n<2
+        return result 
+    end 
+
+    for k=n:-1:2 
+        if color(pile[k]) != color(pile[k-1]) && rank(pile[k]) == rank(pile[k-1])-1
+            result += 1 
+        else 
+            break 
+        end
+    end
+    return result
+
+end
+
+"""
+`score(C::cascade)` is the sum of the scores of the piles in `C` 
+"""
+score(C::cascade) = sum(score(p) for p in C.piles)

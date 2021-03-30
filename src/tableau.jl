@@ -1,4 +1,4 @@
-export Tableau, score
+export Tableau
 
 """
 A `Tableau` is a full position in FreeCell with four free cells,
@@ -41,8 +41,8 @@ end
 """
 `score(T::Tableau)` is the number of cards moved into the foundation.
 """
-function score(T::Tableau)::Int
-    return length(T.Found)
+function score(T::Tableau)::Number
+    return score(T.Free) + score(T.Found) + score(T.Casc)
 end
 
 function hash(T::Tableau, h::UInt)

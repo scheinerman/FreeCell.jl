@@ -75,3 +75,12 @@ function add_card(F::foundation, PC::Card)::Bool
     push!(F.piles[s], PC)
     return true
 end
+
+"""
+`score(F::foundation)` is the sum of the squares of the lengths
+of the four foundation piles.
+"""
+function score(F::foundation)
+    sizes = length.(values(F.piles))
+    return sum(sizes .^ 2)
+end
