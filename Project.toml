@@ -4,12 +4,12 @@ authors = ["Ed Scheinerman <ers@jhu.edu>"]
 version = "0.0.1"
 
 [deps]
-PlayingCards = "b23e55cc-b8be-42d4-99aa-dbf7daa45c92"
+PlayingCards52 = "b23e55cc-b8be-42d4-99aa-dbf7daa45c92"
 ImplicitGraphs = "aa20a09e-9376-456a-970d-31341b90bdf0"
 
 [compat]
 julia = "1"
-PlayingCards = "0.0, 0.1"
+PlayingCards52 = "0.0, 0.1"
 ImplicitGraphs = "0.1"
 
 [extras]
