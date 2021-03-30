@@ -52,6 +52,19 @@ end
 
 
 """
+`add_check(pile::Vector{Card}, PC::Card)` checks to see if `PC`
+may be added to the bottom of the cascade pile `pile`.
+"""
+function add_check(pile::Vector{Card}, PC::Card)::Bool
+    if length(pile) == 0
+        return true
+    end
+    last = pile[end]
+    return rank(last) == rank(PC) + 1 && color(last) != color(PC)
+end
+
+
+"""
 `add_check(C::cascade, k::Int, PC::Card)::Bool`
 checks to see if card `PC` may be added to pile `k`
 of the cascade `C`.
@@ -61,12 +74,7 @@ function add_check(C::cascade, k::Int, PC::Card)::Bool
         return false
     end
 
-    if length(C.piles[k]) == 0  # may always add to an empty 
-        return true
-    end
-
-    LC = C.piles[k][end]   # get last card in this pile 
-    return rank(LC) == rank(PC) + 1 && color(LC) != color(PC)
+    return add_check(C.piles[k], PC)
 end
 
 """
@@ -111,15 +119,15 @@ function score(pile::Vector{Card})
     n = length(pile)
     result = -n
 
-    if n<2
-        return result 
-    end 
+    if n < 2
+        return result
+    end
 
-    for k=n:-1:2 
-        if color(pile[k]) != color(pile[k-1]) && rank(pile[k]) == rank(pile[k-1])-1
-            result += 1 
-        else 
-            break 
+    for k = n:-1:2
+        if color(pile[k]) != color(pile[k-1]) && rank(pile[k]) == rank(pile[k-1]) - 1
+            result += 1
+        else
+            break
         end
     end
     return result

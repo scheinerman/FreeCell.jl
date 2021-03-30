@@ -1,4 +1,4 @@
-export Tableau
+export Tableau, Victory
 
 """
 A `Tableau` is a full position in FreeCell with four free cells,
@@ -18,6 +18,18 @@ struct Tableau
     end
 end
 
+"""
+`Victory()` returns the tableau in which all cards have been 
+moved into the foundation.
+"""
+function Victory()::Tableau
+    T = Tableau()
+    for k = 1:52
+        add_card(T.Found, Card(k))
+    end
+    return T
+end
+
 
 function Tableau(d::Vector{Card})
     C = cascade(d)
@@ -30,11 +42,14 @@ end
 
 
 function show(io::IO, T::Tableau)
+    wide = 38
+    println(io, "-"^wide)
     println(io, "Free Cells: $(free_string(T.Free))")
     println(io, "Foundation:")
     println(io, T.Found)
     println(io, "Cascade:")
-    print(T.Casc)
+    println(io, T.Casc)
+    print(io, "="^wide)
 end
 
 
