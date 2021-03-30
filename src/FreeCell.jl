@@ -1,5 +1,5 @@
 module FreeCell
-using PlayingCards, ImplicitGraphs
+using PlayingCards52, ImplicitGraphs
 
 import Base: show, string, length, isempty, hash, (==)
 

@@ -8,7 +8,7 @@ struct foundation
     piles::Dict{Symbol,Vector{Card}}
     function foundation()
         p = Dict{Symbol,Vector{Card}}()
-        for s in PlayingCards.suit_list
+        for s in PlayingCards52.suit_list
             p[s] = Card[]
         end
         new(p)
@@ -24,7 +24,7 @@ end
 function string(F::foundation)::String
     result = ""
     for k = 1:4
-        s = PlayingCards.suit_list[k]
+        s = PlayingCards52.suit_list[k]
         result *= row_string(F.piles[s])
         if k < 4
             result *= "\n"
