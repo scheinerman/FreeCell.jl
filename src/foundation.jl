@@ -82,5 +82,5 @@ of the four foundation piles.
 """
 function score(F::foundation)
     sizes = length.(values(F.piles))
-    return sum(sizes.^2)
+    return sum(sizes .^ 2)
 end
