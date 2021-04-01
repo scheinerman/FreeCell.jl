@@ -35,5 +35,10 @@ include("tableau.jl")
 include("mover.jl")
 include("game_graph.jl")
 
+export new_game
+"""
+`new_game()` creates a new, random instance of a FreeCell game.
+"""
+new_game() = Tableau(deck())
 
 end # module

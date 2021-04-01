@@ -117,7 +117,7 @@ but adds 1 back in for builds at the bottom.
 """
 function score(pile::Vector{Card})
     n = length(pile)
-    result = -n
+    result = -(n^2)
 
     if n < 2
         return result
