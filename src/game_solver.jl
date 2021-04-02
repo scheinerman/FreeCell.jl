@@ -1,4 +1,4 @@
-using PlayingCards52, FreeCell, DataStructures
+using PlayingCards52, FreeCell, DataStructures, ImplicitGraphs
 
 """
 `edge_generator(T,depth)` creates forward edges from `T`
@@ -38,20 +38,33 @@ function game_solver(T::Tableau, verbose::Bool = true)
     count = 0
     report = 100
 
+    best_Tab = T 
+    best_Found = length(T.Found)
+
     while length(PQ) > 0
         count += 1
         S = dequeue!(PQ)
         push!(visited, S)    # note that we expanded this node 
-        # NS = move_maker(S)   # all out nodes from S 
+        found_size = length(S.Found)
+
+        if found_size > best_Found 
+            best_Tab = T 
+            best_Found = found_size
+        end 
+
+
+
 
         stepper = 3
-        found_size = sum(length.(values(S.Found.piles)))
-        if found_size > 10
+
+        if found_size > 15
             stepper = 2
+            report = 500
         end
-        if found_size > 26
-            stepper = 1
-        end
+        
+        if found_size > 48
+            break 
+        end 
 
 
         edges = edge_generator(S, stepper)
@@ -73,7 +86,7 @@ function game_solver(T::Tableau, verbose::Bool = true)
 
         if verbose
             if count % report == 0
-                println("Stepper:                $stepper")
+                println("Maximum Foundation:     $best_Found")
                 println("Number of iterations:   $count")
                 println("Size of queue:          $(length(PQ))")
                 println("Number visited:         $(length(visited))")
@@ -84,11 +97,22 @@ function game_solver(T::Tableau, verbose::Bool = true)
                 println()
             end
         end
+    end
 
-
+    if verbose
+        println("Switching to end-game mode")
     end
 
     TT = Victory()
+
+    G = free_cell_graph()
+    P = find_path(G, best_Tab, TT)
+    
+    for k=1:length(P)-1
+        trace_back[P[k+1]] = P[k]
+    end
+
+
     result = Tableau[]
     while true 
         push!(result, TT)
@@ -100,13 +124,19 @@ function game_solver(T::Tableau, verbose::Bool = true)
     push!(result, T)
     reverse!(result)
 
+    println()
+    println("="^60)
+    println("Solution path has $(length(result)) positions")
+    println("="^60)
+    println()
+
     for TT in result
         println(TT)
     end 
         
         
 
-    return trace_back
+    # return trace_back
 
 
 end
@@ -118,10 +148,13 @@ end
 function almost()::Tableau
     T = Tableau()
     D = deck(false)
-    for j=1:50
+    for j=1:48
         add_card(T.Found,D[j])
     end
     add_card(T.Casc,1,D[end])
-    add_card(T.Casc,2,D[end-1])
+    push!(T.Casc.piles[1], D[end-2])
+    push!(T.Casc.piles[1], D[end-1])
+    add_card(T.Free,D[end-3])
+
     return T 
 end 
