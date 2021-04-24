@@ -34,6 +34,7 @@ include("cascade.jl")
 include("tableau.jl")
 include("mover.jl")
 include("game_graph.jl")
+include("game_solver.jl")
 
 export new_game
 """
