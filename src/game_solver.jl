@@ -9,12 +9,13 @@ function game_solver(S::Tableau; depth::Int=1, verbose::Int=0)
 end
 
 
-function display_solution(X::Vector{Tableau})
-    for j=1:length(X)
-        println("Step $j")
+function display_solution(X::Vector{Tableau}, pause=0.5)
+    n = length(X)
+    for j=1:n
+        println("Step $j of $n")
         println(X[j])
         println()
-        sleep(1)
+        sleep(pause)
     end
     nothing
 end
