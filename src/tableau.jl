@@ -57,8 +57,8 @@ end
 `score(T::Tableau)` is the number of cards moved into the foundation.
 """
 function score(T::Tableau)::Number
-    return score(T.Free) + 100 * score(T.Found) + score(T.Casc)
-end
+    return -(10*score(T.Free) + 10 * score(T.Found) + score(T.Casc))
+ end
 
 function hash(T::Tableau, h::UInt)
     a = hash(T.Free, h)
