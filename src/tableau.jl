@@ -42,9 +42,9 @@ end
 
 
 function show(io::IO, T::Tableau)
-    wide = 38
+    wide = 50
     println(io, "-"^wide)
-    println(io, "Free Cells: $(free_string(T.Free))")
+    println(io, "Free Cells:\n\t$(free_string(T.Free))")
     println(io, "Foundation:")
     println(io, T.Found)
     println(io, "Cascade:")
@@ -57,8 +57,8 @@ end
 `score(T::Tableau)` is the number of cards moved into the foundation.
 """
 function score(T::Tableau)::Number
-    return -(10*score(T.Free) + 10 * score(T.Found) + score(T.Casc))
- end
+    return -(20 * score(T.Free) + 100 * score(T.Found) + score(T.Casc))
+end
 
 function hash(T::Tableau, h::UInt)
     a = hash(T.Free, h)

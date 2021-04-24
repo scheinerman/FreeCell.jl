@@ -123,14 +123,15 @@ function score(pile::Vector{Card})
         return result
     end
 
+    run = 0
     for k = n:-1:2
         if color(pile[k]) != color(pile[k-1]) && rank(pile[k]) == rank(pile[k-1]) - 1
-            result += 1
+            run += 1
         else
             break
         end
     end
-    return result
+    return result + 2*run
 
 end
 

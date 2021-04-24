@@ -12,10 +12,10 @@ function free_string(FC::free_cells)
     result = ""
 
     for k = 1:nc
-        result *= "[" * string(cards[k]) * "] "
+        result *= string(cards[k]) * " "
     end
     for k = nc+1:4
-        result *= "[--] "
+        result *= "-- "
     end
     return result
 end

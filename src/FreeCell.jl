@@ -13,9 +13,9 @@ ace_high(false)
 
 function row_string(list::Vector{Card})::String
     if length(list) == 0
-        return "--"
+        return "\t--"
     end
-    result = ""
+    result = "\t"
     for c in list
         result *= string(c)
         if c != list[end]
