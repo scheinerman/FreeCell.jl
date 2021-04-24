@@ -117,7 +117,33 @@ but adds 1 back in for builds at the bottom.
 """
 function score(pile::Vector{Card})
     n = length(pile)
-    result = -(n^2)
+
+    if n == 0
+        return 10
+
+    end
+
+    if n < 2
+        return 0
+    end
+
+
+    rks = rank.(pile)
+    drks = diff(rks)
+
+    if all(drks .<= 0)
+        return 0
+    end
+
+    i = findfirst(t -> t > 0, drks)  # find first ascent in pile (it's bad)
+    return -n + i
+
+
+
+
+    result = -Int(round(n^1.5))
+
+    return result
 
     if n < 2
         return result
@@ -131,7 +157,7 @@ function score(pile::Vector{Card})
             break
         end
     end
-    return result + 2*run
+    return result + run
 
 end
 

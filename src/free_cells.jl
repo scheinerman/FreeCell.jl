@@ -58,6 +58,6 @@ end
 `score(c::free_cells)` is the cube of the number of unoccupied cells.
 """
 function score(c::free_cells)
-    # open = 4 - length(c)
-    return (-length(c))^3
+    svec = [10 10 0 -20 -50 -300]
+    return svec[length(c)+1]
 end
