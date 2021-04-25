@@ -55,9 +55,10 @@ end
 
 
 """
-`score(c::free_cells)` is the cube of the number of unoccupied cells.
+`score(c::free_cells)` measures gives a penalty for too many 
+occupied free cells.
 """
 function score(c::free_cells)
-    svec = [10 10 0 -20 -50 -300]
+    svec = [10 10 0 -20 -50 -500]
     return svec[length(c)+1]
 end

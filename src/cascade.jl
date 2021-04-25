@@ -119,12 +119,12 @@ function score(pile::Vector{Card})
     n = length(pile)
 
     if n == 0
-        return 10
+        return 20
 
     end
 
     if n < 2
-        return 0
+        return 5
     end
 
 
@@ -141,23 +141,23 @@ function score(pile::Vector{Card})
 
 
 
-    result = -Int(round(n^1.5))
+    # result = -Int(round(n^1.5))
 
-    return result
+    # return result
 
-    if n < 2
-        return result
-    end
+    # if n < 2
+    #     return result
+    # end
 
-    run = 0
-    for k = n:-1:2
-        if color(pile[k]) != color(pile[k-1]) && rank(pile[k]) == rank(pile[k-1]) - 1
-            run += 1
-        else
-            break
-        end
-    end
-    return result + run
+    # run = 0
+    # for k = n:-1:2
+    #     if color(pile[k]) != color(pile[k-1]) && rank(pile[k]) == rank(pile[k-1]) - 1
+    #         run += 1
+    #     else
+    #         break
+    #     end
+    # end
+    # return result + run
 
 end
 
