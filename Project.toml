@@ -9,7 +9,7 @@ ImplicitGraphs = "aa20a09e-9376-456a-970d-31341b90bdf0"
 
 [compat]
 julia = "1"
-PlayingCards52 = "0.0, 0.1"
+PlayingCards52 = "0.0, 0.1, 0.2"
 ImplicitGraphs = "0.1"
 
 [extras]
